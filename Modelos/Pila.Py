@@ -3,8 +3,6 @@ from Modelos.Animal import Animal
 class Pila:
     def __init__(self, items: list[Animal]):
         self.items = items
-        self.grandezaTotal = items[0].grandeza + items[1].grandeza + items[2].grandeza
-        self.maxGrandeza = max(items).grandeza
 
     def isEmpty(self):
         return self.items == []
@@ -19,7 +17,7 @@ class Pila:
         return len(self.items)
 
     def getGrandeza(self):
-        return self.grandezaTotal
+        return self.items[0].grandeza + self.items[1].grandeza + self.items[2].grandeza
     
     def maxGrandeza(self):
-        return max(self.items).grandeza
+        return max(self.items[0].grandeza , self.items[1].grandeza , self.items[2].grandeza)

@@ -1,5 +1,5 @@
-from Estructuras import Escenario2
-from Estructuras import Pila
+from Estructuras.Escena2 import Escena2
+from Modelos.Pila import Pila
 
 from binarytree import build, Node
 
@@ -17,7 +17,7 @@ class RedBlackTree:
         self.Nil = RedBlackTreeNode(None, None, "Negro")
         self.root = self.Nil
 
-    def insert(self, value):
+    def insert(self, value: list[Escena2]):
         if not self.root:
             self.root = RedBlackTreeNode(value, 'black')
         else:
