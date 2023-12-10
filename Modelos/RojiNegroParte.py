@@ -1,200 +1,141 @@
 from Estructuras.Escena2 import Escena2
 from Modelos.Pila import Pila
 
-from binarytree import build, Node
-
-class RedBlackTreeNode():
-    def _init_(self, escena: Pila, color="Rojo"):
-        self.clave = escena.GrandezaTotal
-        self.valor = escena.maxGrandeza
-        self.izquierda = None
-        self.derecha = None
-        self.padre = None
+class Nodo:
+    def __init__(self, escena: Escena2, color, izquierda=None, derecha=None, padre=None):
+        self.clave = escena.grandeza
+        self.valor = escena
         self.color = color
+        self.izquierda = izquierda
+        self.derecha = derecha
+        self.padre = padre
 
-class RedBlackTree:
-    def _init_(self):
-        self.Nil = RedBlackTreeNode(None, None, "Negro")
-        self.root = self.Nil
 
-    def insert(self, value: list[Escena2]):
-        if not self.root:
-            self.root = RedBlackTreeNode(value, 'black')
-        else:
-            self.root = self._insert(self.root, value)
-            self.root.color = 'black'
+class ArbolRojoNegro:
+    def __init__(self):
+        self.NIL = Nodo(None, None, 'NEGRO')  # Nodo nulo
+        self.raiz = self.NIL
 
-    def _insert(self, node, value):
-        if not node:
-            return RedBlackTreeNode(value, 'red')
+    def insertar(self, escena):
+        nuevo_nodo = Nodo(escena, 'ROJO', self.NIL, self.NIL, self.NIL)
+        self._insertar_nodo(nuevo_nodo)
+        self._reparar_insercion(nuevo_nodo)
 
-        # Perform standard BST insert
-        if value < node.value:
-            node.left = self._insert(node.left, value)
-        elif value > node.value:
-            node.right = self._insert(node.right, value)
-        else:
-            return node  # Duplicates are not allowed
+    def _insertar_nodo(self, nuevo_nodo):
+        nodo_actual = self.raiz
+        nodo_anterior = self.NIL
 
-        # Fix the tree
-        if node.right and node.right.color == 'red':
-            if node.left and node.left.color == 'red':
-                node.color = 'red'
-                node.left.color = 'black'
-                node.right.color = 'black'
+        while nodo_actual != self.NIL:
+            nodo_anterior = nodo_actual
+            if nuevo_nodo.clave < nodo_actual.clave:
+                nodo_actual = nodo_actual.izquierda
+            
+            elif nuevo_nodo.clave == nodo_actual.clave:
+                
+                if nodo_actual.valor.maxGrandeza < nodo_anterior.valor.maxGrandeza:
+                    nodo_actual = nodo_actual.izquierda
+                
+                else: 
+                    nodo_actual = nodo_actual.derecha
+            
             else:
-                if value > node.right.value:
-                    return self._rotate_left(node)
+                nodo_actual = nodo_actual.derecha
+
+        nuevo_nodo.padre = nodo_anterior
+
+        if nodo_anterior == self.NIL:
+            self.raiz = nuevo_nodo
+        elif nuevo_nodo.clave < nodo_anterior.clave:
+            nodo_anterior.izquierda = nuevo_nodo
+        else:
+            nodo_anterior.derecha = nuevo_nodo
+
+    def _reparar_insercion(self, nodo):
+        while nodo.padre.color == 'ROJO':
+            if nodo.padre == nodo.padre.padre.izquierda:
+                tio = nodo.padre.padre.derecha
+                if tio.color == 'ROJO':
+                    nodo.padre.color = 'NEGRO'
+                    tio.color = 'NEGRO'
+                    nodo.padre.padre.color = 'ROJO'
+                    nodo = nodo.padre.padre
                 else:
-                    node.right = self._rotate_right(node.right)
-                    return self._rotate_left(node)
-        elif node.left and node.left.color == 'red':
-            if value < node.left.value:
-                return self._rotate_right(node)
+                    if nodo == nodo.padre.derecha:
+                        nodo = nodo.padre
+                        self._rotar_izquierda(nodo)
+                    nodo.padre.color = 'NEGRO'
+                    nodo.padre.padre.color = 'ROJO'
+                    self._rotar_derecha(nodo.padre.padre)
             else:
-                node.left = self._rotate_left(node.left)
-                return self._rotate_right(node)
-
-        return node
-
-    def _rotate_left(self, node):
-        new_root = node.right
-        node.right = new_root.left
-        new_root.left = node
-        new_root.color, node.color = node.color, 'red'
-        return new_root
-
-    def _rotate_right(self, node):
-        new_root = node.left
-        node.left = new_root.right
-        new_root.right = node
-        new_root.color, node.color = node.color, 'red'
-        return new_root
-
-    def display(self):
-        if self.root:
-            return self.root
-
-    def maximo(self, nodo=None):
-        if nodo is None:
-            nodo = self.raiz
-
-        while nodo.derecha != self.NIL:
-            nodo = nodo.derecha
-
-        return nodo.clave, nodo.valor
-
-    def minimo(self, nodo=None):
-        if nodo is None:
-            nodo = self.raiz
-
-        while nodo.izquierda != self.NIL:
-            nodo = nodo.izquierda
-
-        return nodo.clave, nodo.valor
-
-    def delete(self, clave):
-        nodo = self._buscar_nodo(clave)
-        if nodo is None:
-            raise ValueError(f"La clave {clave} no está en el árbol.")
-        self._delete_nodo(nodo)
-
-    def _delete_nodo(self, nodo):
-        y = nodo
-        y_color_original = y.color
-        if nodo.izquierda == self.NIL:
-            x = nodo.derecha
-            self._transplantar(nodo, nodo.derecha)
-        elif nodo.derecha == self.NIL:
-            x = nodo.izquierda
-            self._transplantar(nodo, nodo.izquierda)
-        else:
-            y = self._encontrar_minimo(nodo.derecha)
-            y_color_original = y.color
-            x = y.derecha
-            if y.padre == nodo:
-                x.padre = y
-            else:
-                self._transplantar(y, y.derecha)
-                y.derecha = nodo.derecha
-                y.derecha.padre = y
-            self._transplantar(nodo, y)
-            y.izquierda = nodo.izquierda
-            y.izquierda.padre = y
-            y.color = nodo.color
-        if y_color_original == "Negro":
-            self._delete_fixup(x)
-
-    def _delete_fixup(self, x):
-        while x != self.raiz and x.color == "Negro":
-            if x == x.padre.izquierda:
-                hermano = x.padre.derecha
-                if hermano.color == "Rojo":
-                    hermano.color = "Negro"
-                    x.padre.color = "Rojo"
-                    self.rotacion_izquierda(x.padre)
-                    hermano = x.padre.derecha
-                if hermano.izquierda.color == "Negro" and hermano.derecha.color == "Negro":
-                    hermano.color = "Rojo"
-                    x = x.padre
+                tio = nodo.padre.padre.izquierda
+                if tio.color == 'ROJO':
+                    nodo.padre.color = 'NEGRO'
+                    tio.color = 'NEGRO'
+                    nodo.padre.padre.color = 'ROJO'
+                    nodo = nodo.padre.padre
                 else:
-                    if hermano.derecha.color == "Negro":
-                        hermano.izquierda.color = "Negro"
-                        hermano.color = "Rojo"
-                        self.rotacion_derecha(hermano)
-                        hermano = x.padre.derecha
-                    hermano.color = x.padre.color
-                    x.padre.color = "Negro"
-                    hermano.derecha.color = "Negro"
-                    self.rotacion_izquierda(x.padre)
-                    x = self.raiz
-            else:
-                hermano = x.padre.izquierda
-                if hermano.color == "Rojo":
-                    hermano.color = "Negro"
-                    x.padre.color = "Rojo"
-                    self.rotacion_derecha(x.padre)
-                    hermano = x.padre.izquierda
-                if hermano.derecha.color == "Negro" and hermano.izquierda.color == "Negro":
-                    hermano.color = "Rojo"
-                    x = x.padre
-                else:
-                    if hermano.izquierda.color == "Negro":
-                        hermano.derecha.color = "Negro"
-                        hermano.color = "Rojo"
-                        self.rotacion_izquierda(hermano)
-                        hermano = x.padre.izquierda
-                    hermano.color = x.padre.color
-                    x.padre.color = "Negro"
-                    hermano.izquierda.color = "Negro"
-                    self.rotacion_derecha(x.padre)
-                    x = self.raiz
-        x.color = "Negro"
+                    if nodo == nodo.padre.izquierda:
+                        nodo = nodo.padre
+                        self._rotar_derecha(nodo)
+                    nodo.padre.color = 'NEGRO'
+                    nodo.padre.padre.color = 'ROJO'
+                    self._rotar_izquierda(nodo.padre.padre)
 
-    def _transplantar(self, u, v):
-        if u.padre == self.NIL:
-            self.raiz = v
-        elif u == u.padre.izquierda:
-            u.padre.izquierda = v
+        self.raiz.color = 'NEGRO'
+
+    def _rotar_izquierda(self, nodo):
+        hijo_derecha = nodo.derecha
+        nodo.derecha = hijo_derecha.izquierda
+        if hijo_derecha.izquierda != self.NIL:
+            hijo_derecha.izquierda.padre = nodo
+        hijo_derecha.padre = nodo.padre
+        if nodo.padre == self.NIL:
+            self.raiz = hijo_derecha
+        elif nodo == nodo.padre.izquierda:
+            nodo.padre.izquierda = hijo_derecha
         else:
-            u.padre.derecha = v
-        v.padre = u.padre
+            nodo.padre.derecha = hijo_derecha
+        hijo_derecha.izquierda = nodo
+        nodo.padre = hijo_derecha
 
-    def _encontrar_minimo(self, nodo):
-        while nodo.izquierda != self.NIL:
-            nodo = nodo.izquierda
-        return nodo
+    def _rotar_derecha(self, nodo):
+        hijo_izquierda = nodo.izquierda
+        nodo.izquierda = hijo_izquierda.derecha
+        if hijo_izquierda.derecha != self.NIL:
+            hijo_izquierda.derecha.padre = nodo
+        hijo_izquierda.padre = nodo.padre
+        if nodo.padre == self.NIL:
+            self.raiz = hijo_izquierda
+        elif nodo == nodo.padre.izquierda:
+            nodo.padre.izquierda = hijo_izquierda
+        else:
+            nodo.padre.derecha = hijo_izquierda
+        hijo_izquierda.derecha = nodo
+        nodo.padre = hijo_izquierda
+    
+    def min(self):
+        if self.raiz == self.NIL:
+            return None  # Árbol vacío
+        nodo_actual = self.raiz
+        while nodo_actual.izquierda != self.NIL:
+            nodo_actual = nodo_actual.izquierda
+        return nodo_actual.clave
 
-    def _buscar_nodo(self, clave):
-        return self._buscar_nodo_recursivo(self.raiz, clave)
+    def max(self):
+        if self.raiz == self.NIL:
+            return None  # Árbol vacío
+        nodo_actual = self.raiz
+        while nodo_actual.derecha != self.NIL:
+            nodo_actual = nodo_actual.derecha
+        return nodo_actual.clave
+    
 
-    def _buscar_nodo_recursivo(self, nodo, clave):
-        if nodo == self.NIL or clave == nodo.clave:
-            return nodo
-        if clave < nodo.clave:
-            return self._buscar_nodo_recursivo(nodo.izquierda, clave)
-        return self._buscar_nodo_recursivo(nodo.derecha, clave)
+    
+    def a_lista_inorden(self):
+        lista_resultado = []
+        self._a_lista_inorden(self.raiz, lista_resultado)
+        return lista_resultado
 
-class RojiNegroParte:
-    def __init__(self, escenarios: list[Pila]):
-        self.escenarios = escenarios
+    def insetarEscenas(self, escenas: list[Escena2]):
+        for escena in escenas:
+            self.insertar(escena)
