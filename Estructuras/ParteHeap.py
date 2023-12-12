@@ -4,6 +4,7 @@ from Estructuras.EscenarioHeap import EscenarioHeap
 class ParteHeap:
     def __init__(self, heap: list[EscenarioHeap]):
         self.heap = heap
+        self.grandezaTotal = 0
 
 
     def __str__(self):
@@ -39,3 +40,4 @@ class ParteHeap:
         for i in range(n - 1, 0, -1):
             self.heap[i], self.heap[0] = self.heap[0], self.heap[i]
             self.heapify(i, 0)
+        return self

@@ -70,7 +70,7 @@ class Espectaculo:
 
         print(len(auxEscenarios))
 
-        self.granApertura = ParteHeap(auxEscenarios)
+        self.granApertura = ParteHeap(auxEscenarios).buildHeap()
 
         print(len(self.granApertura.getHeap()))
 
@@ -81,12 +81,12 @@ class Espectaculo:
         return self
 
     def ordenarEspectaculo(self):
-        self.granApertura.heapSort()
-        for parte in self.partes:
-            parte.heapSort()
-            for escenario in parte.getHeap():
-                escenario.heapSort()
-        return self
+        # self.granApertura.heapSort()
+        # for parte in self.partes:
+        #     parte.heapSort()
+        #     for escenario in parte.getHeap():
+        #         escenario.heapSort()
+        return self.granApertura
     def __str__(self):
         partes_str = ", ".join(str(parte) for parte in self.partes)
         return f"Espectaculo: \n Gran Apertura: {self.granApertura} \n Partes: {partes_str}"
