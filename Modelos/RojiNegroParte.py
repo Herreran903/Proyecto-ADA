@@ -2,22 +2,26 @@ from Estructuras.Escena2 import Escena2
 from Modelos.Pila import Pila
 
 class Nodo:
-    def __init__(self, escena: Escena2, color, izquierda=None, derecha=None, padre=None):
-        self.clave = escena.grandeza
-        self.valor = escena
+
+    def __init__ (self, clave, valor, color, izquierda = None, derecha = None, padre = None):
+        self.clave = clave
+        self.valor = valor
         self.color = color
         self.izquierda = izquierda
         self.derecha = derecha
         self.padre = padre
-
-
+    
+    def __str__(self):
+        escena_str = "-".join(str(animal) for animal in self.valor.pila.items)
+        return f"grandezaTotal: {self.clave}, Escena: \n {escena_str} \n"
+    
 class ArbolRojoNegro:
     def __init__(self):
         self.NIL = Nodo(None, None, 'NEGRO')  # Nodo nulo
         self.raiz = self.NIL
 
-    def insertar(self, escena):
-        nuevo_nodo = Nodo(escena, 'ROJO', self.NIL, self.NIL, self.NIL)
+    def insertar(self, escena: Escena2):
+        nuevo_nodo = Nodo(escena.grandeza, escena, 'ROJO', self.NIL, self.NIL, self.NIL)
         self._insertar_nodo(nuevo_nodo)
         self._reparar_insercion(nuevo_nodo)
 
@@ -113,6 +117,15 @@ class ArbolRojoNegro:
         hijo_izquierda.derecha = nodo
         nodo.padre = hijo_izquierda
     
+    def lenght(self, nodo=None):
+        if nodo is None:
+            nodo = self.raiz
+
+        if nodo == self.NIL:
+            return 0
+        
+        return 1 + self.lenght(nodo.izquierda) + self.lenght(nodo.derecha)
+    
     def min(self):
         if self.raiz == self.NIL:
             return None  # Árbol vacío
@@ -129,12 +142,37 @@ class ArbolRojoNegro:
             nodo_actual = nodo_actual.derecha
         return nodo_actual.clave
     
-
+    def promedio(self):
+        if self.raiz == self.NIL:
+            return 0  # Árbol vacío
+        suma = self.raiz.clave + self.raiz.izquierda.clave + self.raiz.derecha.clave
+        promedio = suma / self.lenght()
+        return promedio
     
-    def a_lista_inorden(self):
-        lista_resultado = []
-        self._a_lista_inorden(self.raiz, lista_resultado)
-        return lista_resultado
+    def inOrder(self):
+        """
+        Retorna una lista con los nodos del árbol en orden ascendente.
+        """
+        nodes_list = []
+        if self.raiz == self.NIL:
+            return nodes_list
+        else:
+            self.inOrderAux(self.raiz, nodes_list)
+            return nodes_list
+
+    def inOrderAux(self, nodo, nodes_list):
+        """
+        Método auxiliar para realizar el recorrido in-order y agregar los nodos a la lista.
+        """
+        if nodo != self.NIL:
+            # Recorrer el subárbol izquierdo
+            self.inOrderAux(nodo.izquierda, nodes_list)
+            
+            # Agregar el nodo actual a la lista
+            nodes_list.append(nodo)
+
+            # Recorrer el subárbol derecho
+            self.inOrderAux(nodo.derecha, nodes_list)
 
     def insetarEscenas(self, escenas: list[Escena2]):
         for escena in escenas:
