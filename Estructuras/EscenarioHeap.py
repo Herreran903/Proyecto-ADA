@@ -3,10 +3,11 @@ class EscenarioHeap:
     def __init__(self, heap: list[Animal]):
         self.heap = heap
         self.grandezaTotal = heap[0].grandeza + heap[1].grandeza + heap[2].grandeza
+        self.buildHeap()
 
     def __str__(self):
         heap_str = "-".join(str(animal) for animal in self.heap)
-        return f" \n EscenarioHeap: \n {heap_str} Grandeza Total: {self.grandezaTotal} \n"
+        return f" \n EscenarioHeap: \n {heap_str} Grandeza Total Escena: {self.grandezaTotal} \n"
     def getHeap(self):
         return self.heap
     def heapify(self, n, i):

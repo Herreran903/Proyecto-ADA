@@ -4,12 +4,12 @@ from Estructuras.EscenarioHeap import EscenarioHeap
 class ParteHeap:
     def __init__(self, heap: list[EscenarioHeap]):
         self.heap = heap
-        self.grandezaTotal = 0
-
+        self.grandezaTotal = self.sumarGrandezas()
+        self.buildHeap()
 
     def __str__(self):
         heap_str = ", ".join(str(escenario) for escenario in self.heap)
-        return f"  \n ParteHeap: {heap_str}"
+        return f"  \n ParteHeap: {heap_str} \n Grandeza Total Parte: {self.grandezaTotal}"
 
     def getHeap(self):
         return self.heap
@@ -41,3 +41,19 @@ class ParteHeap:
             self.heap[i], self.heap[0] = self.heap[0], self.heap[i]
             self.heapify(i, 0)
         return self
+
+    def sumarGrandezas(self):
+        self.grandezaTotal = 0
+        for escenario in self.heap:
+            self.grandezaTotal += escenario.grandezaTotal
+        return self.grandezaTotal
+
+    def maxHeap(self):
+        return self.heap[0]
+
+    def minHeap(self):
+        minimo = self.heap[0]
+        for escena in self.heap:
+            if escena.grandezaTotal < minimo.grandezaTotal:
+                minimo = escena
+        return minimo

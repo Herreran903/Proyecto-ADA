@@ -3,7 +3,7 @@ from Estructuras.EspectaculoHeap import EspectaculoHeap
 
 ANIMALES = GeneradorDatosIniciales.generarAnimalesAlAzar(9)
 
-ESPECTACULO = GeneradorDatosIniciales.generarEspectaculoAlAzar(ANIMALES, 3, 2)
+ESPECTACULO = GeneradorDatosIniciales.generarEspectaculoAlAzar(ANIMALES, 3, 3)
 
 ## SOLUCION 1
 

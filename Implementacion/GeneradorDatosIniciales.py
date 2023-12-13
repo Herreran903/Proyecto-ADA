@@ -73,10 +73,13 @@ def generarEspectaculoAlAzar(animales, k, m):
 
     primerActo = generarParteAlAzar(animales, (m-1)*k)
 
+    auxPrimerActo = primerActo.copy()
+
     espectaculo.append(primerActo)
 
     for i in range(m-1):
-        parte = generarParteAlAzar(animales, k)
+        parte = random.sample(auxPrimerActo, k)
         espectaculo.append(parte)
+        auxPrimerActo = [escenario for escenario in auxPrimerActo if escenario not in parte]
 
     return espectaculo
