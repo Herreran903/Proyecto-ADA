@@ -1,10 +1,10 @@
 
-from Modelos.EspectaculoPila import Espectaculo
+from Estructuras.EspectaculoPila import EspectaculoPila
 from Modelos.Metodos import generarAnimalesAlAzar
 
 animales = generarAnimalesAlAzar(10)
 
-espectaculo = Espectaculo(animales, 3, 2)
+espectaculo = EspectaculoPila(animales, 3, 2)
 espectaculo.generar_espectaculo_al_azar()
 espectaculo.mostrar_espectaculo()
 
