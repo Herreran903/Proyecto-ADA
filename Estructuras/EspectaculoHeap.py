@@ -11,40 +11,25 @@ class EspectaculoHeap:
         self.minEscenario = None
         self.prom = None
         self.construirZoologicoHeap()
+        self.ordenarZoologico()
 
     def construirZoologicoHeap(self):
-
         for i in range(len(self.heap)):
             for j in range(len(self.heap[i])):
-                self.heap[i][j] = EscenarioHeap(self.heap[i][j])
-
+                self.heap[i][j] = EscenarioHeap(self.heap[i][j]).heapSort()
         for i in range(len(self.heap)):
             self.heap[i] = ParteHeap(self.heap[i])
-
         self.buildHeap()
-
         self.maxEscenario = self.heap[0].maxHeap()
         self.minEscenario = self.heap[0].minHeap()
-
         self.prom = self.promedio()
-
         return self
 
     def ordenarZoologico(self):
-
-        for parte in self.heap:
-            for escenario in parte.getHeap():
-                print("ESCENARIOOOOOOOOOOOOOOO",escenario)
-                escenario.heapSort()
-                print("2ESCENARIOOOOOOOOOOOOOOO",escenario)
-
         for parte in self.heap:
             parte.heapSort()
-
         self.heapSort(1)
-
         return self
-
 
     def __str__(self):
         heap_str = ", ".join(str(escenario) for escenario in self.heap)

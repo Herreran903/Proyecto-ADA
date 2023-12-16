@@ -1,6 +1,5 @@
 from Estructuras.EscenarioHeap import EscenarioHeap
 
-
 class ParteHeap:
     def __init__(self, heap: list[EscenarioHeap]):
         self.heap = heap
@@ -18,13 +17,28 @@ class ParteHeap:
         mayor = i
         izquierda = 2 * i + 1
         derecha = 2 * i + 2
-
         if izquierda < n and self.heap[izquierda].grandezaTotal > self.heap[mayor].grandezaTotal:
             mayor = izquierda
-
+        elif izquierda < n and self.heap[izquierda].grandezaTotal == self.heap[mayor].grandezaTotal:
+            if self.heap[izquierda].heap[2].grandeza > self.heap[mayor].heap[2].grandeza:
+                mayor = izquierda
+            elif self.heap[izquierda].heap[2].grandeza == self.heap[mayor].heap[2].grandeza:
+                if self.heap[izquierda].heap[1].grandeza > self.heap[mayor].heap[1].grandeza:
+                    mayor = izquierda
+                elif self.heap[izquierda].heap[1].grandeza == self.heap[mayor].heap[1].grandeza:
+                    if self.heap[izquierda].heap[0].grandeza > self.heap[mayor].heap[0].grandeza:
+                        mayor = izquierda
         if derecha < n and self.heap[derecha].grandezaTotal > self.heap[mayor].grandezaTotal:
             mayor = derecha
-
+        elif derecha < n and self.heap[derecha].grandezaTotal == self.heap[mayor].grandezaTotal:
+            if self.heap[derecha].heap[2].grandeza > self.heap[mayor].heap[2].grandeza:
+                mayor = derecha
+            elif self.heap[derecha].heap[2].grandeza == self.heap[mayor].heap[2].grandeza:
+                if self.heap[derecha].heap[1].grandeza > self.heap[mayor].heap[1].grandeza:
+                    mayor = derecha
+                elif self.heap[derecha].heap[1].grandeza == self.heap[mayor].heap[1].grandeza:
+                    if self.heap[derecha].heap[0].grandeza > self.heap[mayor].heap[0].grandeza:
+                        mayor = derecha
         if mayor != i:
             self.heap[i], self.heap[mayor] = self.heap[mayor], self.heap[i]
             self.heapify(n, mayor)
