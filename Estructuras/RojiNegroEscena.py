@@ -110,15 +110,6 @@ class ArbolRojoNegro:
         hijo_izquierda.derecha = nodo
         nodo.padre = hijo_izquierda
     
-    def lenght(self, nodo=None):
-        if nodo is None:
-            nodo = self.raiz
-
-        if nodo == self.NIL:
-            return 0
-        
-        return 1 + self.lenght(nodo.izquierda) + self.lenght(nodo.derecha)
-    
     def min(self):
         if self.raiz == self.NIL:
             return None  # Árbol vacío

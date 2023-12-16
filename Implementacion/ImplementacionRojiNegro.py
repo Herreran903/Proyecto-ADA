@@ -321,7 +321,6 @@ plt.show()
 #print("Solucion 1")
 #print(EspectaculoHeap(ESPECTACULO))
 
-"""
 espectaculo = []
 for parte in ESPECTACULO:
     part = []
@@ -349,5 +348,3 @@ print("Escena mas pequeña")
 print(arbolEspectaculo1.max().valor.min())
 print("Promedio")
 print(arbolEspectaculo1.max().valor.promedio())
-
-"""
