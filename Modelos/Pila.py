@@ -21,7 +21,7 @@ class Pila:
         else:
             return self.items.pop()
 
-    def length(self):
+    def lenght(self):
         return len(self.items)
     
     def insert(pila, animales: list[Animal]):

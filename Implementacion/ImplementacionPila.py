@@ -9,6 +9,7 @@ espectaculo.generar_espectaculo_al_azar()
 espectaculo.mostrar_espectaculo()
 
 datos_espectaculo = espectaculo.obtener_datos_espectaculo()
+print("Solucion 2")
 print("Datos del Espectáculo:")
 print(f"Animal más participante: {datos_espectaculo['animal_mas_participacion']}")
 print(f"Animal menos participante: {datos_espectaculo['animal_menos_participacion']}")

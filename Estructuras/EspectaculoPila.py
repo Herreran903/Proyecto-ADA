@@ -3,6 +3,8 @@ from Modelos.Animal import Animal
 from Modelos.Escenario import Escenario
 from Modelos.Parte import Parte
 from Modelos.Pila import Pila
+from Estructuras.EscenarioPila import EscenarioPila
+from Estructuras.PartePila import PartePila
 
 class EspectaculoPila:
     def __init__(self, animales, m, k):
@@ -11,30 +13,6 @@ class EspectaculoPila:
         self.k = k
         self.partes = []
 
-    def generar_escenario_al_azar(self):
-        animales_selectos = random.sample(self.animales, 3)
-        
-        while len(set(animal.grandeza for animal in animales_selectos)) < 3:
-            animales_selectos = random.sample(self.animales, 3)
-
-        return Escenario(animales_selectos)
-
-    def generar_parte_al_azar(self):
-        parte = []
-        for _ in range(self.k):
-            escenario = self.generar_escenario_al_azar()
-            parte.append(escenario)
-
-        return Parte(parte)
-
-    def generar_espectaculo_al_azar(self):
-        primer_acto = self.generar_parte_al_azar()
-
-        self.partes.append(primer_acto)
-
-        for _ in range(self.m - 1):
-            acto = self.generar_parte_al_azar()
-            self.partes.append(acto)
 
     def mostrar_espectaculo(self):
         for i, parte in enumerate(self.partes, start=1):
