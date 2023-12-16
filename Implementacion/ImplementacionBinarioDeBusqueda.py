@@ -1,5 +1,6 @@
 import GeneradorDatosIniciales
 from Modelos.BinarioEscena import  ArbolBinarioBusqueda as arbolEscena
+from Modelos.BinarioParte import ArbolBinarioBusqueda as arbolParte
 import time
 import matplotlib.pyplot as plt
 
@@ -19,12 +20,42 @@ arbolEscena1.insertarAnimales(escena1)
 for i in arbolEscena1.inorder_traversal():
     print(i)
 
-print("Escena mas grande")
-print(arbolEscena1.encontrar_maximo().valor)
-print("Escena mas pequeña")
-print(arbolEscena1.encontrar_minimo().valor)
-print("Grandeza escena")
+print("Grandeza escena1")
 print(arbolEscena1.suma())
+
+escena2 = GeneradorDatosIniciales.generarEscenarioAlAzar(ANIMALES)
+arbolEscena2 = arbolEscena()
+arbolEscena2.insertarAnimales(escena2)
+
+for i in arbolEscena2.inorder_traversal():
+    print(i)
+
+print("Grandeza escena2")
+print(arbolEscena2.suma())
+
+escena3 = GeneradorDatosIniciales.generarEscenarioAlAzar(ANIMALES)
+arbolEscena3 = arbolEscena()
+arbolEscena3.insertarAnimales(escena3)
+
+for i in arbolEscena3.inorder_traversal():
+    print(i)
+
+print("Grandeza escena3")
+print(arbolEscena3.suma())
+
+parte1 = [arbolEscena1, arbolEscena2, arbolEscena3]
+arbolParte1 = arbolParte()
+arbolParte1.insertarPartes(parte1)
+
+for i in arbolParte1.inorder_traversal():
+    print(i)
+
+print("Grandeza parte1")
+print(arbolParte1.sumar())
+
+print("PromedioParte1")
+print(arbolParte1.promedio())
+
 
 
 """
