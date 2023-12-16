@@ -12,7 +12,6 @@ ANIMALES = GeneradorDatosIniciales.generarAnimalesAlAzar(160)
 #print("Solucion 1")
 #print(EspectaculoHeap(ESPECTACULO))
 
-
 ## PRUEBAS  DE TIEMPO
 x = []
 y = []
@@ -25,7 +24,7 @@ fin_tiempo = time.time()
 
 tiempo_total = fin_tiempo - inicio_tiempo
 print("PRUEBA1: ", tiempo_total)
-x.append(2)
+x.append(2*(2*(2-1)))
 y.append(tiempo_total)
 
 ESPECTACULO = GeneradorDatosIniciales.generarEspectaculoAlAzar(ANIMALES, 4, 4)
@@ -36,7 +35,7 @@ fin_tiempo = time.time()
 
 tiempo_total = fin_tiempo - inicio_tiempo
 print("PRUEBA2: ", tiempo_total)
-x.append(4)
+x.append(2*(4*(4-1)))
 y.append(tiempo_total)
 
 ESPECTACULO = GeneradorDatosIniciales.generarEspectaculoAlAzar(ANIMALES, 8, 8)
@@ -58,7 +57,7 @@ fin_tiempo = time.time()
 
 tiempo_total = fin_tiempo - inicio_tiempo
 print("PRUEBA4: ", tiempo_total)
-x.append(16)
+x.append(2*(16*(16-1)))
 y.append(tiempo_total)
 
 ESPECTACULO = GeneradorDatosIniciales.generarEspectaculoAlAzar(ANIMALES, 32, 32)
@@ -69,7 +68,7 @@ fin_tiempo = time.time()
 
 tiempo_total = fin_tiempo - inicio_tiempo
 print("PRUEBA5: ", tiempo_total)
-x.append(32)
+x.append(2*(32*(32-1)))
 y.append(tiempo_total)
 
 ESPECTACULO = GeneradorDatosIniciales.generarEspectaculoAlAzar(ANIMALES, 64, 64)
@@ -80,7 +79,7 @@ fin_tiempo = time.time()
 
 tiempo_total = fin_tiempo - inicio_tiempo
 print("PRUEBA6: ", tiempo_total)
-x.append(64)
+x.append(2*(64*(64-1)))
 y.append(tiempo_total)
 
 ESPECTACULO = GeneradorDatosIniciales.generarEspectaculoAlAzar(ANIMALES, 128, 128)
@@ -91,7 +90,7 @@ fin_tiempo = time.time()
 
 tiempo_total = fin_tiempo - inicio_tiempo
 print("PRUEBA7: ", tiempo_total)
-x.append(128)
+x.append(2*(128*(128-1)))
 y.append(tiempo_total)
 
 ESPECTACULO = GeneradorDatosIniciales.generarEspectaculoAlAzar(ANIMALES, 148, 148)
@@ -102,7 +101,7 @@ fin_tiempo = time.time()
 
 tiempo_total = fin_tiempo - inicio_tiempo
 print("PRUEBA8: ", tiempo_total)
-x.append(148)
+x.append(2*(148*(148-1)))
 y.append(tiempo_total)
 
 ESPECTACULO = GeneradorDatosIniciales.generarEspectaculoAlAzar(ANIMALES, 168, 168)
@@ -113,7 +112,7 @@ fin_tiempo = time.time()
 
 tiempo_total = fin_tiempo - inicio_tiempo
 print("PRUEBA9: ", tiempo_total)
-x.append(168)
+x.append(2*(168*(168-1)))
 y.append(tiempo_total)
 
 ESPECTACULO = GeneradorDatosIniciales.generarEspectaculoAlAzar(ANIMALES, 188, 188)
@@ -124,7 +123,7 @@ fin_tiempo = time.time()
 
 tiempo_total = fin_tiempo - inicio_tiempo
 print("PRUEBA10: ", tiempo_total)
-x.append(188)
+x.append(2*(188*(188-1)))
 y.append(tiempo_total)
 
 ESPECTACULO = GeneradorDatosIniciales.generarEspectaculoAlAzar(ANIMALES, 208, 208)
@@ -135,8 +134,14 @@ fin_tiempo = time.time()
 
 tiempo_total = fin_tiempo - inicio_tiempo
 print("PRUEB11: ", tiempo_total)
-x.append(208)
+x.append(2*(208*(208-1)))
 y.append(tiempo_total)
+
+plt.plot(x, y)
+plt.xlabel('Cantidad de escenarios')
+plt.ylabel('Tiempo de ejecucion')
+plt.title('Tiempo de ejecucion de la solucion 1')
+plt.show()
 
 
 
