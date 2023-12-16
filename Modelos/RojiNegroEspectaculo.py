@@ -33,7 +33,7 @@ class ArbolRojoNegro:
 
             elif nuevo_nodo.clave == nodo_actual.clave:
 
-                if nodo_actual.valor.maxEscena < nodo_anterior.valor.maxEscena:
+                if nodo_actual.valor.maxEscena.clave < nodo_anterior.valor.maxEscena.clave:
                     nodo_actual = nodo_actual.izquierda
 
                 else:
