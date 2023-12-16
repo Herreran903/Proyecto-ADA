@@ -4,4 +4,4 @@ class Animal:
         self.grandeza = grandeza
 
     def __str__(self):
-        return f"Animal: {self.nombre}, Grandeza: {self.grandeza} \n"
+        return f"({self.nombre}, {self.grandeza})\n"

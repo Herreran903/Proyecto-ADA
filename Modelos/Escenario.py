@@ -6,4 +6,4 @@ class Escenario:
 
     def __str__(self):
         animales_str = ", ".join(str(animal) for animal in self.animales)
-        return f"Escenario: {animales_str}"
+        return f"Escena: {animales_str}"
