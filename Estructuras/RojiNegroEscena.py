@@ -1,4 +1,5 @@
-from Estructuras.ParteRojiNegro import ParteRojiNegro
+from Modelos.Animal import Animal
+
 class Nodo:
 
     def __init__ (self, clave, valor, color, izquierda = None, derecha = None, padre = None):
@@ -10,15 +11,18 @@ class Nodo:
         self.padre = padre
 
     def __str__(self):
-        return f"(Grandeza Parte: {self.clave} \n{self.valor} )"
-
+        return f"{self.valor}"
 class ArbolRojoNegro:
     def __init__(self):
         self.NIL = Nodo(None, None, 'NEGRO')  # Nodo nulo
         self.raiz = self.NIL
 
-    def insertar(self, parte: ParteRojiNegro):
-        nuevo_nodo = Nodo(parte.grandeza, parte, 'ROJO', self.NIL, self.NIL, self.NIL)
+    def __str__(self):
+        orden_Str = "".join(str(animal) for animal in self.inOrder())
+        return f"{orden_Str}"
+
+    def insertar(self, animal: Animal):
+        nuevo_nodo = Nodo(animal.grandeza, animal, 'ROJO', self.NIL, self.NIL, self.NIL)
         self._insertar_nodo(nuevo_nodo)
         self._reparar_insercion(nuevo_nodo)
 
@@ -30,15 +34,7 @@ class ArbolRojoNegro:
             nodo_anterior = nodo_actual
             if nuevo_nodo.clave < nodo_actual.clave:
                 nodo_actual = nodo_actual.izquierda
-
-            elif nuevo_nodo.clave == nodo_actual.clave:
-
-                if nodo_actual.valor.maxEscena.clave < nodo_anterior.valor.maxEscena.clave:
-                    nodo_actual = nodo_actual.izquierda
-
-                else:
-                    nodo_actual = nodo_actual.derecha
-
+            
             else:
                 nodo_actual = nodo_actual.derecha
 
@@ -113,23 +109,23 @@ class ArbolRojoNegro:
             nodo.padre.derecha = hijo_izquierda
         hijo_izquierda.derecha = nodo
         nodo.padre = hijo_izquierda
-
+    
     def lenght(self, nodo=None):
         if nodo is None:
             nodo = self.raiz
 
         if nodo == self.NIL:
             return 0
-
+        
         return 1 + self.lenght(nodo.izquierda) + self.lenght(nodo.derecha)
-
+    
     def min(self):
         if self.raiz == self.NIL:
             return None  # Árbol vacío
         nodo_actual = self.raiz
         while nodo_actual.izquierda != self.NIL:
             nodo_actual = nodo_actual.izquierda
-        return nodo_actual
+        return nodo_actual.clave
 
     def max(self):
         if self.raiz == self.NIL:
@@ -137,18 +133,14 @@ class ArbolRojoNegro:
         nodo_actual = self.raiz
         while nodo_actual.derecha != self.NIL:
             nodo_actual = nodo_actual.derecha
-        return nodo_actual
-
-    def inOrderEspectaculo(self):
-        list = self.inOrder()
-        n = len(list)
-        espectaculo = list[n-1]
-        list.pop()
-        list.insert(0, espectaculo)
-
-        return list
-
-
+        return nodo_actual.clave
+    
+    def suma(self):
+        if self.raiz == self.NIL:
+            return 0  # Árbol vacío
+        suma = self.raiz.clave + self.raiz.izquierda.clave + self.raiz.derecha.clave
+        return suma
+    
     def inOrder(self):
         """
         Retorna una lista con los nodos del árbol en orden ascendente.
@@ -167,13 +159,13 @@ class ArbolRojoNegro:
         if nodo != self.NIL:
             # Recorrer el subárbol izquierdo
             self.inOrderAux(nodo.izquierda, nodes_list)
-
+            
             # Agregar el nodo actual a la lista
             nodes_list.append(nodo)
 
             # Recorrer el subárbol derecho
             self.inOrderAux(nodo.derecha, nodes_list)
 
-    def insertarPartes(self, partes: list[ParteRojiNegro]):
-        for parte in partes:
-            self.insertar(parte)
+    def insertarAnimales(self, animales: list[Animal]):
+        for animal in animales:
+            self.insertar(animal)

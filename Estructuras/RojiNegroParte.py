@@ -1,4 +1,4 @@
-from Estructuras.EscenaRojiNegro import EscenaRojinegro
+from Estructuras.RojiNegroEscena import ArbolRojoNegro as arbolEscena
 
 class Nodo:
 
@@ -9,9 +9,9 @@ class Nodo:
         self.izquierda = izquierda
         self.derecha = derecha
         self.padre = padre
-    
+
     def __str__(self):
-        return f" Grandeza escena: {self.clave} \nAnimales:\n{self.valor}"
+        return f"escena: {self.clave} \n{self.valor}"
     
 class ArbolRojoNegro:
     def __init__(self):
@@ -19,10 +19,11 @@ class ArbolRojoNegro:
         self.raiz = self.NIL
 
     def __str__(self):
-        return self.inOrder()
+        orden_Str = "".join(str(escena) for escena in self.inOrder())
+        return f"{orden_Str}"
 
-    def insertar(self, escena: EscenaRojinegro):
-        nuevo_nodo = Nodo(escena.grandeza, escena, 'ROJO', self.NIL, self.NIL, self.NIL)
+    def insertar(self, escena: arbolEscena):
+        nuevo_nodo = Nodo(escena.suma(), escena, 'ROJO', self.NIL, self.NIL, self.NIL)
         self._insertar_nodo(nuevo_nodo)
         self._reparar_insercion(nuevo_nodo)
 
@@ -37,7 +38,7 @@ class ArbolRojoNegro:
             
             elif nuevo_nodo.clave == nodo_actual.clave:
                 
-                if nodo_actual.valor.maxGrandeza < nodo_anterior.valor.maxGrandeza:
+                if nodo_actual.valor.suma() < nodo_anterior.valor.suma():
                     nodo_actual = nodo_actual.izquierda
                 
                 else: 
@@ -161,8 +162,24 @@ class ArbolRojoNegro:
         return suma_total
 
     def promedio(self):
-        promedio = self.suma() / self.lenght()
-        return promedio
+        suma_llaves, cantidad_nodos = self._calcular_promedio(self.raiz)
+
+        if cantidad_nodos == 0:
+            return None
+        else:
+            return suma_llaves / cantidad_nodos
+
+    def _calcular_promedio(self, nodo):
+        if nodo == self.NIL:
+            return 0, 0
+
+        suma_izquierda, cantidad_izquierda = self._calcular_promedio(nodo.izquierda)
+        suma_derecha, cantidad_derecha = self._calcular_promedio(nodo.derecha)
+
+        suma_total = nodo.clave + suma_izquierda + suma_derecha
+        cantidad_total = 1 + cantidad_izquierda + cantidad_derecha
+
+        return suma_total, cantidad_total
 
     def inOrder(self):
         """
@@ -189,6 +206,6 @@ class ArbolRojoNegro:
             # Recorrer el subárbol derecho
             self.inOrderAux(nodo.derecha, nodes_list)
 
-    def insertarEscenas(self, escenas: list[EscenaRojinegro]):
+    def insertarEscenas(self, escenas: list[arbolEscena]):
         for escena in escenas:
             self.insertar(escena)

@@ -1,10 +1,7 @@
 import GeneradorDatosIniciales
-from Modelos.RojiNegroEscena import  ArbolRojoNegro as arbolEscena
-from Modelos.RojiNegroParte import  ArbolRojoNegro as arbolParte
-from Modelos.RojiNegroEspectaculo import  ArbolRojoNegro as arbolEspectaculo
-from Estructuras.EscenaRojiNegro import EscenaRojinegro as escenaRojiNegro
-from Estructuras.ParteRojiNegro import ParteRojiNegro as parteRojiNegro
-from Estructuras.EspectaculoRojiNegro import EspectaculoRojiNegro as EspectaculoRojiNegro
+from Estructuras.RojiNegroEscena import  ArbolRojoNegro as arbolEscena
+from Estructuras.RojiNegroParte import  ArbolRojoNegro as arbolParte
+from Estructuras.RojiNegroEspectaculo import  ArbolRojoNegro as arbolEspectaculo
 import time
 import matplotlib.pyplot as plt
 
@@ -13,9 +10,6 @@ ANIMALES = GeneradorDatosIniciales.generarAnimalesAlAzar(160)
 ESPECTACULO = GeneradorDatosIniciales.generarEspectaculoAlAzar(ANIMALES, 3, 3)
 
 ## SOLUCION 1
-
-#print("Solucion 1")
-#print(EspectaculoHeap(ESPECTACULO))
 
 ## PRUEBAS  DE TIEMPO
 x = []
@@ -30,19 +24,17 @@ for parte in ESPECTACULO:
     for escena in parte:
         arbolEscena1 = arbolEscena()
         arbolEscena1.insertarAnimales(escena)
-        escenaObjeto = escenaRojiNegro(arbolEscena1)
-        part.append(escenaObjeto)
+        part.append(arbolEscena1)
 
     arbolParte1 = arbolParte()
     arbolParte1.insertarEscenas(part)
-    parteObjeto = parteRojiNegro(arbolParte1)
-    espectaculo.append(parteObjeto)
+    espectaculo.append(arbolParte1)
 
 arbolEspectaculo1 = arbolEspectaculo()
 arbolEspectaculo1.insertarPartes(espectaculo)
-espectaculoObjeto = EspectaculoRojiNegro(arbolEspectaculo1)
 
-espectaculoOrdenado = espectaculoObjeto.partes.inOrderEspectaculo()
+espectaculoOrdenado = arbolEspectaculo1.inOrderEspectaculo()
+#print(arbolEspectaculo1) #imprime el espectaculo ordenado
 fin_tiempo = time.time()
 
 tiempo_total = fin_tiempo - inicio_tiempo
@@ -59,19 +51,17 @@ for parte in ESPECTACULO:
     for escena in parte:
         arbolEscena1 = arbolEscena()
         arbolEscena1.insertarAnimales(escena)
-        escenaObjeto = escenaRojiNegro(arbolEscena1)
-        part.append(escenaObjeto)
+        part.append(arbolEscena1)
 
     arbolParte1 = arbolParte()
     arbolParte1.insertarEscenas(part)
-    parteObjeto = parteRojiNegro(arbolParte1)
-    espectaculo.append(parteObjeto)
+    espectaculo.append(arbolParte1)
 
 arbolEspectaculo1 = arbolEspectaculo()
 arbolEspectaculo1.insertarPartes(espectaculo)
-espectaculoObjeto = EspectaculoRojiNegro(arbolEspectaculo1)
 
-espectaculoOrdenado = espectaculoObjeto.partes.inOrderEspectaculo()
+espectaculoOrdenado = arbolEspectaculo1.inOrderEspectaculo()
+#print(arbolEspectaculo1) #imprime el espectaculo ordenado
 fin_tiempo = time.time()
 
 tiempo_total = fin_tiempo - inicio_tiempo
@@ -88,19 +78,17 @@ for parte in ESPECTACULO:
     for escena in parte:
         arbolEscena1 = arbolEscena()
         arbolEscena1.insertarAnimales(escena)
-        escenaObjeto = escenaRojiNegro(arbolEscena1)
-        part.append(escenaObjeto)
+        part.append(arbolEscena1)
 
     arbolParte1 = arbolParte()
     arbolParte1.insertarEscenas(part)
-    parteObjeto = parteRojiNegro(arbolParte1)
-    espectaculo.append(parteObjeto)
+    espectaculo.append(arbolParte1)
 
 arbolEspectaculo1 = arbolEspectaculo()
 arbolEspectaculo1.insertarPartes(espectaculo)
-espectaculoObjeto = EspectaculoRojiNegro(arbolEspectaculo1)
 
-espectaculoOrdenado = espectaculoObjeto.partes.inOrderEspectaculo()
+espectaculoOrdenado = arbolEspectaculo1.inOrderEspectaculo()
+#print(arbolEspectaculo1) #imprime el espectaculo ordenado
 fin_tiempo = time.time()
 
 tiempo_total = fin_tiempo - inicio_tiempo
@@ -117,19 +105,17 @@ for parte in ESPECTACULO:
     for escena in parte:
         arbolEscena1 = arbolEscena()
         arbolEscena1.insertarAnimales(escena)
-        escenaObjeto = escenaRojiNegro(arbolEscena1)
-        part.append(escenaObjeto)
+        part.append(arbolEscena1)
 
     arbolParte1 = arbolParte()
     arbolParte1.insertarEscenas(part)
-    parteObjeto = parteRojiNegro(arbolParte1)
-    espectaculo.append(parteObjeto)
+    espectaculo.append(arbolParte1)
 
 arbolEspectaculo1 = arbolEspectaculo()
 arbolEspectaculo1.insertarPartes(espectaculo)
-espectaculoObjeto = EspectaculoRojiNegro(arbolEspectaculo1)
 
-espectaculoOrdenado = espectaculoObjeto.partes.inOrderEspectaculo()
+espectaculoOrdenado = arbolEspectaculo1.inOrderEspectaculo()
+#print(arbolEspectaculo1) #imprime el espectaculo ordenado
 fin_tiempo = time.time()
 
 tiempo_total = fin_tiempo - inicio_tiempo
@@ -146,19 +132,17 @@ for parte in ESPECTACULO:
     for escena in parte:
         arbolEscena1 = arbolEscena()
         arbolEscena1.insertarAnimales(escena)
-        escenaObjeto = escenaRojiNegro(arbolEscena1)
-        part.append(escenaObjeto)
+        part.append(arbolEscena1)
 
     arbolParte1 = arbolParte()
     arbolParte1.insertarEscenas(part)
-    parteObjeto = parteRojiNegro(arbolParte1)
-    espectaculo.append(parteObjeto)
+    espectaculo.append(arbolParte1)
 
 arbolEspectaculo1 = arbolEspectaculo()
 arbolEspectaculo1.insertarPartes(espectaculo)
-espectaculoObjeto = EspectaculoRojiNegro(arbolEspectaculo1)
 
-espectaculoOrdenado = espectaculoObjeto.partes.inOrderEspectaculo()
+espectaculoOrdenado = arbolEspectaculo1.inOrderEspectaculo()
+#print(arbolEspectaculo1) #imprime el espectaculo ordenado
 fin_tiempo = time.time()
 
 tiempo_total = fin_tiempo - inicio_tiempo
@@ -175,19 +159,17 @@ for parte in ESPECTACULO:
     for escena in parte:
         arbolEscena1 = arbolEscena()
         arbolEscena1.insertarAnimales(escena)
-        escenaObjeto = escenaRojiNegro(arbolEscena1)
-        part.append(escenaObjeto)
+        part.append(arbolEscena1)
 
     arbolParte1 = arbolParte()
     arbolParte1.insertarEscenas(part)
-    parteObjeto = parteRojiNegro(arbolParte1)
-    espectaculo.append(parteObjeto)
+    espectaculo.append(arbolParte1)
 
 arbolEspectaculo1 = arbolEspectaculo()
 arbolEspectaculo1.insertarPartes(espectaculo)
-espectaculoObjeto = EspectaculoRojiNegro(arbolEspectaculo1)
 
-espectaculoOrdenado = espectaculoObjeto.partes.inOrderEspectaculo()
+espectaculoOrdenado = arbolEspectaculo1.inOrderEspectaculo()
+#print(arbolEspectaculo1) #imprime el espectaculo ordenado
 fin_tiempo = time.time()
 
 tiempo_total = fin_tiempo - inicio_tiempo
@@ -204,19 +186,17 @@ for parte in ESPECTACULO:
     for escena in parte:
         arbolEscena1 = arbolEscena()
         arbolEscena1.insertarAnimales(escena)
-        escenaObjeto = escenaRojiNegro(arbolEscena1)
-        part.append(escenaObjeto)
+        part.append(arbolEscena1)
 
     arbolParte1 = arbolParte()
     arbolParte1.insertarEscenas(part)
-    parteObjeto = parteRojiNegro(arbolParte1)
-    espectaculo.append(parteObjeto)
+    espectaculo.append(arbolParte1)
 
 arbolEspectaculo1 = arbolEspectaculo()
 arbolEspectaculo1.insertarPartes(espectaculo)
-espectaculoObjeto = EspectaculoRojiNegro(arbolEspectaculo1)
 
-espectaculoOrdenado = espectaculoObjeto.partes.inOrderEspectaculo()
+espectaculoOrdenado = arbolEspectaculo1.inOrderEspectaculo()
+#print(arbolEspectaculo1) #imprime el espectaculo ordenado
 fin_tiempo = time.time()
 
 tiempo_total = fin_tiempo - inicio_tiempo
@@ -233,19 +213,17 @@ for parte in ESPECTACULO:
     for escena in parte:
         arbolEscena1 = arbolEscena()
         arbolEscena1.insertarAnimales(escena)
-        escenaObjeto = escenaRojiNegro(arbolEscena1)
-        part.append(escenaObjeto)
+        part.append(arbolEscena1)
 
     arbolParte1 = arbolParte()
     arbolParte1.insertarEscenas(part)
-    parteObjeto = parteRojiNegro(arbolParte1)
-    espectaculo.append(parteObjeto)
+    espectaculo.append(arbolParte1)
 
 arbolEspectaculo1 = arbolEspectaculo()
 arbolEspectaculo1.insertarPartes(espectaculo)
-espectaculoObjeto = EspectaculoRojiNegro(arbolEspectaculo1)
 
-espectaculoOrdenado = espectaculoObjeto.partes.inOrderEspectaculo()
+espectaculoOrdenado = arbolEspectaculo1.inOrderEspectaculo()
+#print(arbolEspectaculo1) #imprime el espectaculo ordenado
 fin_tiempo = time.time()
 
 tiempo_total = fin_tiempo - inicio_tiempo
@@ -262,19 +240,17 @@ for parte in ESPECTACULO:
     for escena in parte:
         arbolEscena1 = arbolEscena()
         arbolEscena1.insertarAnimales(escena)
-        escenaObjeto = escenaRojiNegro(arbolEscena1)
-        part.append(escenaObjeto)
+        part.append(arbolEscena1)
 
     arbolParte1 = arbolParte()
     arbolParte1.insertarEscenas(part)
-    parteObjeto = parteRojiNegro(arbolParte1)
-    espectaculo.append(parteObjeto)
+    espectaculo.append(arbolParte1)
 
 arbolEspectaculo1 = arbolEspectaculo()
 arbolEspectaculo1.insertarPartes(espectaculo)
-espectaculoObjeto = EspectaculoRojiNegro(arbolEspectaculo1)
 
-espectaculoOrdenado = espectaculoObjeto.partes.inOrderEspectaculo()
+espectaculoOrdenado = arbolEspectaculo1.inOrderEspectaculo()
+#print(arbolEspectaculo1) #imprime el espectaculo ordenado
 fin_tiempo = time.time()
 
 tiempo_total = fin_tiempo - inicio_tiempo
@@ -291,19 +267,17 @@ for parte in ESPECTACULO:
     for escena in parte:
         arbolEscena1 = arbolEscena()
         arbolEscena1.insertarAnimales(escena)
-        escenaObjeto = escenaRojiNegro(arbolEscena1)
-        part.append(escenaObjeto)
+        part.append(arbolEscena1)
 
     arbolParte1 = arbolParte()
     arbolParte1.insertarEscenas(part)
-    parteObjeto = parteRojiNegro(arbolParte1)
-    espectaculo.append(parteObjeto)
+    espectaculo.append(arbolParte1)
 
 arbolEspectaculo1 = arbolEspectaculo()
 arbolEspectaculo1.insertarPartes(espectaculo)
-espectaculoObjeto = EspectaculoRojiNegro(arbolEspectaculo1)
 
-espectaculoOrdenado = espectaculoObjeto.partes.inOrderEspectaculo()
+espectaculoOrdenado = arbolEspectaculo1.inOrderEspectaculo()
+#print(arbolEspectaculo1) #imprime el espectaculo ordenado
 fin_tiempo = time.time()
 
 tiempo_total = fin_tiempo - inicio_tiempo
@@ -320,19 +294,17 @@ for parte in ESPECTACULO:
     for escena in parte:
         arbolEscena1 = arbolEscena()
         arbolEscena1.insertarAnimales(escena)
-        escenaObjeto = escenaRojiNegro(arbolEscena1)
-        part.append(escenaObjeto)
+        part.append(arbolEscena1)
 
     arbolParte1 = arbolParte()
     arbolParte1.insertarEscenas(part)
-    parteObjeto = parteRojiNegro(arbolParte1)
-    espectaculo.append(parteObjeto)
+    espectaculo.append(arbolParte1)
 
 arbolEspectaculo1 = arbolEspectaculo()
 arbolEspectaculo1.insertarPartes(espectaculo)
-espectaculoObjeto = EspectaculoRojiNegro(arbolEspectaculo1)
 
-espectaculoOrdenado = espectaculoObjeto.partes.inOrderEspectaculo()
+espectaculoOrdenado = arbolEspectaculo1.inOrderEspectaculo()
+#print(arbolEspectaculo1) #imprime el espectaculo ordenado
 fin_tiempo = time.time()
 
 tiempo_total = fin_tiempo - inicio_tiempo
@@ -346,40 +318,36 @@ plt.ylabel('Tiempo de ejecucion')
 plt.title('Tiempo de ejecucion de la solucion 1')
 plt.show()
 
+#print("Solucion 1")
+#print(EspectaculoHeap(ESPECTACULO))
+
 """
-## SOLUCION 1
-
-print("Solucion 1")
-
 espectaculo = []
 for parte in ESPECTACULO:
     part = []
     for escena in parte:
         arbolEscena1 = arbolEscena()
         arbolEscena1.insertarAnimales(escena)
-        escenaObjeto = escenaRojiNegro(arbolEscena1)
-        part.append(escenaObjeto)
+        part.append(arbolEscena1)
 
     arbolParte1 = arbolParte()
     arbolParte1.insertarEscenas(part)
-    parteObjeto = parteRojiNegro(arbolParte1)
-    espectaculo.append(parteObjeto)
+    espectaculo.append(arbolParte1)
 
 arbolEspectaculo1 = arbolEspectaculo()
 arbolEspectaculo1.insertarPartes(espectaculo)
-espectaculoObjeto = EspectaculoRojiNegro(arbolEspectaculo1)
 
-espectaculoOrdenado = espectaculoObjeto.partes.inOrderEspectaculo()
+espectaculoOrdenado = arbolEspectaculo1.inOrderEspectaculo()
 
-print("Espectaculo")
-for i in espectaculoOrdenado:
-    print(i)
+
+
+print(arbolEspectaculo1) #imprime el espectaculo ordenado
 
 print("Escena mas grande")
-print(espectaculoObjeto.maxEscena)
+print(arbolEspectaculo1.max().valor.max())
 print("Escena mas pequeña")
-print(espectaculoObjeto.minEscena)
-print("Promedio grandeza espectaculo")
-print(espectaculoObjeto.promedio)
+print(arbolEspectaculo1.max().valor.min())
+print("Promedio")
+print(arbolEspectaculo1.max().valor.promedio())
 
 """
