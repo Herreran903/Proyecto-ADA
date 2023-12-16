@@ -50,10 +50,16 @@ class ArbolBinarioBusqueda:
         return nodo_actual
 
     def suma(self):
-        if self.raiz is None:
-            return 0  # Árbol vacío
-        suma = self.raiz.llave + self.raiz.izquierda.llave + self.raiz.derecha.llave
-        return suma
+        return self._sumar_llaves(self.raiz)
+
+    def _sumar_llaves(self, nodo):
+        if nodo is None:
+            return 0
+
+        suma_izquierda = self._sumar_llaves(nodo.izquierda)
+        suma_derecha = self._sumar_llaves(nodo.derecha)
+
+        return nodo.llave + suma_izquierda + suma_derecha
 
     def insertarAnimales(self, animales: list[Animal]):
         for animal in animales:
