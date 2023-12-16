@@ -19,6 +19,14 @@ arbolEscena1.insertarAnimales(escena1)
 for i in arbolEscena1.inorder_traversal():
     print(i)
 
+print("Escena mas grande")
+print(arbolEscena1.encontrar_maximo().valor)
+print("Escena mas pequeña")
+print(arbolEscena1.encontrar_minimo().valor)
+print("Grandeza escena")
+print(arbolEscena1.suma())
+
+
 """
 ## SOLUCION 1
 

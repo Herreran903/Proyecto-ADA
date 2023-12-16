@@ -14,7 +14,7 @@ class ArbolBinarioBusqueda:
         self.raiz = None
 
     def __str__(self):
-        return self.inorder_traversal().__str__()
+        return f"{self.inorder_traversal()}"
 
     def insertar(self, animal:Animal):
         self.raiz = self._insertar(self.raiz, animal)
@@ -47,12 +47,12 @@ class ArbolBinarioBusqueda:
         while nodo_actual.izquierda:
             nodo_actual = nodo_actual.izquierda
 
-        return (nodo_actual.llave, nodo_actual.valor)
+        return nodo_actual
 
     def suma(self):
-        if self.raiz == self.NIL:
+        if self.raiz is None:
             return 0  # Árbol vacío
-        suma = self.raiz.clave + self.raiz.izquierda.clave + self.raiz.derecha.clave
+        suma = self.raiz.llave + self.raiz.izquierda.llave + self.raiz.derecha.llave
         return suma
 
     def insertarAnimales(self, animales: list[Animal]):
