@@ -12,3 +12,18 @@ class EscenarioPila:
     
     def getPila(self):
         return self.pila
+
+    def buildPila(self):
+        self.pila.sort(key=lambda animal: animal.grandeza)
+
+    def getSumaGrandezas(self):
+        return sum(animal.grandeza for animal in self.pila)
+
+    def getGrandezaMinima(self):
+        return min(animal.grandeza for animal in self.pila)
+
+    def getGrandezaMaxima(self):
+        return max(animal.grandeza for animal in self.pila)
+    
+    def contarParticipacionAnimal(self, animal_nombre):
+        return sum(1 for animal in self.pila if animal.nombre == animal_nombre)
