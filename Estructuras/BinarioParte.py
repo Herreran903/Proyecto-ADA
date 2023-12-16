@@ -1,5 +1,4 @@
-from Modelos.Animal import Animal
-from Modelos.BinarioEscena import  ArbolBinarioBusqueda as arbolEscena
+from Estructuras.BinarioEscena import  ArbolBinarioBusqueda as arbolEscena
 class Nodo:
     def __init__(self, llave, valor):
         self.llave = llave

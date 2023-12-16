@@ -1,4 +1,4 @@
-from Modelos.BinarioParte import  ArbolBinarioBusqueda as arbolParte
+from Estructuras.BinarioParte import  ArbolBinarioBusqueda as arbolParte
 class Nodo:
     def __init__(self, llave, valor):
         self.llave = llave
@@ -27,7 +27,7 @@ class ArbolBinarioBusqueda:
         if escena.sumar() < nodo.llave:
             nodo.izquierda = self._insertar(nodo.izquierda, escena)
         elif escena.sumar() == nodo.llave:
-            if nodo.valor.suma() < escena.sumar():
+            if nodo.valor.sumar() < escena.sumar():
                 nodo.izquierda = self._insertar(nodo.izquierda, escena)
             else:
                 nodo.derecha = self._insertar(nodo.derecha, escena)
