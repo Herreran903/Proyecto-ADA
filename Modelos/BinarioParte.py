@@ -8,7 +8,7 @@ class Nodo:
         self.derecha = None
 
     def __str__(self):
-        return f"escena:\n{self.valor}"
+        return f"escena: {self.llave} \n{self.valor}"
 
 class ArbolBinarioBusqueda:
     def __init__(self):
@@ -88,7 +88,7 @@ class ArbolBinarioBusqueda:
 
         return suma_total, cantidad_total
 
-    def insertarPartes(self, arbolEscena: list[arbolEscena]):
+    def insertarEscenas(self, arbolEscena: list[arbolEscena]):
         for escena in arbolEscena:
             self.insertar(escena)
 

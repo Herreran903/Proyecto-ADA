@@ -1,6 +1,7 @@
 import GeneradorDatosIniciales
 from Modelos.BinarioEscena import  ArbolBinarioBusqueda as arbolEscena
 from Modelos.BinarioParte import ArbolBinarioBusqueda as arbolParte
+from Modelos.BinarioEspectaculo import ArbolBinarioBusqueda as arbolEspectaculo
 import time
 import matplotlib.pyplot as plt
 
@@ -8,10 +9,29 @@ ANIMALES = GeneradorDatosIniciales.generarAnimalesAlAzar(160)
 
 ESPECTACULO = GeneradorDatosIniciales.generarEspectaculoAlAzar(ANIMALES, 3, 3)
 
-## SOLUCION 1
+##SOLUCION 1
 
-#print("Solucion 1")
+print("Solucion 1")
 
+espectaculo = []
+for parte in ESPECTACULO:
+    part = []
+    for escena in parte:
+        arbolEscena1 = arbolEscena()
+        arbolEscena1.insertarAnimales(escena)
+        part.append(arbolEscena1)
+
+    arbolParte1 = arbolParte()
+    arbolParte1.insertarEscenas(part)
+    espectaculo.append(arbolParte1)
+
+arbolEspectaculo1 = arbolEspectaculo()
+arbolEspectaculo1.insertarPartes(espectaculo)
+
+espectaculoOrdenado = arbolEspectaculo1.inOrderEspectaculo()
+#print(arbolEspectaculo1) #imprime el espectaculo ordenado
+
+"""
 escena1 = GeneradorDatosIniciales.generarEscenarioAlAzar(ANIMALES)
 
 arbolEscena1 = arbolEscena()
@@ -45,7 +65,7 @@ print(arbolEscena3.suma())
 
 parte1 = [arbolEscena1, arbolEscena2, arbolEscena3]
 arbolParte1 = arbolParte()
-arbolParte1.insertarPartes(parte1)
+arbolParte1.insertarEscenas(parte1)
 
 print("Parte1")
 print(arbolParte1)
@@ -56,42 +76,32 @@ print(arbolParte1.sumar())
 print("PromedioParte1")
 print(arbolParte1.promedio())
 
+arbolEscena4 = arbolEscena()
+arbolEscena4.insertarAnimales(GeneradorDatosIniciales.generarEscenarioAlAzar(ANIMALES))
 
+arbolEscena5 = arbolEscena()
+arbolEscena5.insertarAnimales(GeneradorDatosIniciales.generarEscenarioAlAzar(ANIMALES))
 
-"""
-## SOLUCION 1
+parte2 =  [arbolEscena1, arbolEscena2, arbolEscena3, arbolEscena4, arbolEscena5]
+arbolParte2 = arbolParte()
+arbolParte2.insertarEscenas(parte2)
 
-print("Solucion 1")
+print("Parte2")
+print(arbolParte2)
 
-espectaculo = []
-for parte in ESPECTACULO:
-    part = []
-    for escena in parte:
-        arbolEscena1 = arbolEscena()
-        arbolEscena1.insertarAnimales(escena)
-        escenaObjeto = escenaRojiNegro(arbolEscena1)
-        part.append(escenaObjeto)
+print("Grandeza parte2")
+print(arbolParte2.sumar())
 
-    arbolParte1 = arbolParte()
-    arbolParte1.insertarEscenas(part)
-    parteObjeto = parteRojiNegro(arbolParte1)
-    espectaculo.append(parteObjeto)
-
+espectaculo1 = [arbolParte1, arbolParte2]
 arbolEspectaculo1 = arbolEspectaculo()
-arbolEspectaculo1.insertarPartes(espectaculo)
-espectaculoObjeto = EspectaculoRojiNegro(arbolEspectaculo1)
+arbolEspectaculo1.insertarPartes(espectaculo1)
 
-espectaculoOrdenado = espectaculoObjeto.partes.inOrderEspectaculo()
-
-print("Espectaculo")
-for i in espectaculoOrdenado:
-    print(i)
-
-print("Escena mas grande")
-print(espectaculoObjeto.maxEscena)
-print("Escena mas pequeña")
-print(espectaculoObjeto.minEscena)
-print("Promedio grandeza espectaculo")
-print(espectaculoObjeto.promedio)
-
+print("Espectaculo1")
+print(arbolEspectaculo1)
+print("escena mas grande")
+print(arbolEspectaculo1.encontrar_maximo().valor.encontrar_maximo())
+print("escena mas pequeña")
+print(arbolEspectaculo1.encontrar_maximo().valor.encontrar_minimo())
+print("promedio")
+print(arbolEspectaculo1.encontrar_maximo().valor.promedio())
 """
