@@ -47,8 +47,8 @@ parte1 = [arbolEscena1, arbolEscena2, arbolEscena3]
 arbolParte1 = arbolParte()
 arbolParte1.insertarPartes(parte1)
 
-for i in arbolParte1.inorder_traversal():
-    print(i)
+print("Parte1")
+print(arbolParte1)
 
 print("Grandeza parte1")
 print(arbolParte1.sumar())

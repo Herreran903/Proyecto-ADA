@@ -8,14 +8,15 @@ class Nodo:
         self.derecha = None
 
     def __str__(self):
-        return f"{self.valor}"
+        return f"escena:\n{self.valor}"
 
 class ArbolBinarioBusqueda:
     def __init__(self):
         self.raiz = None
 
     def __str__(self):
-        return f"{self.inorder_traversal()}"
+        orden_Str = "".join(str(escena) for escena in self.inorder_traversal())
+        return f"{orden_Str}"
 
     def insertar(self, escena:arbolEscena):
         self.raiz = self._insertar(self.raiz, escena)

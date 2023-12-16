@@ -14,7 +14,8 @@ class ArbolBinarioBusqueda:
         self.raiz = None
 
     def __str__(self):
-        return f"{self.inorder_traversal()}"
+        orden_Str = "".join(str(animal) for animal in self.inorder_traversal())
+        return f"{orden_Str}"
 
     def insertar(self, animal:Animal):
         self.raiz = self._insertar(self.raiz, animal)
