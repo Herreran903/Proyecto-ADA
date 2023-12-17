@@ -9,8 +9,34 @@ ANIMALES = GeneradorDatosIniciales.generarAnimalesAlAzar(160)
 
 ESPECTACULO = GeneradorDatosIniciales.generarEspectaculoAlAzar(ANIMALES, 3, 3)
 
+espectaculo = []
+for parte in ESPECTACULO:
+    part = []
+    for escena in parte:
+        arbolEscena1 = arbolEscena()
+        arbolEscena1.insertarAnimales(escena)
+        part.append(arbolEscena1)
+
+    arbolParte1 = arbolParte()
+    arbolParte1.insertarEscenas(part)
+    espectaculo.append(arbolParte1)
+
+arbolEspectaculo1 = arbolEspectaculo()
+arbolEspectaculo1.insertarPartes(espectaculo)
+
+espectaculoOrdenado = arbolEspectaculo1.inOrderEspectaculo()
+print(arbolEspectaculo1) #imprime el espectaculo ordenado
+print("Escena mas grande")
+print(arbolEspectaculo1.max().valor.max()) # imprime la escena mas grande
+print("Escena mas pequeña")
+print(arbolEspectaculo1.max().valor.min()) # imprime la escena mas pequeña
+print("Promedio")
+print(arbolEspectaculo1.max().valor.promedio()) # imprime el promedio
+
+
 ## SOLUCION 1
 
+"""
 ## PRUEBAS  DE TIEMPO
 x = []
 y = []
@@ -317,34 +343,5 @@ plt.xlabel('Cantidad de escenarios')
 plt.ylabel('Tiempo de ejecucion')
 plt.title('Tiempo de ejecucion de la solucion 1')
 plt.show()
+"""
 
-#print("Solucion 1")
-#print(EspectaculoHeap(ESPECTACULO))
-
-espectaculo = []
-for parte in ESPECTACULO:
-    part = []
-    for escena in parte:
-        arbolEscena1 = arbolEscena()
-        arbolEscena1.insertarAnimales(escena)
-        part.append(arbolEscena1)
-
-    arbolParte1 = arbolParte()
-    arbolParte1.insertarEscenas(part)
-    espectaculo.append(arbolParte1)
-
-arbolEspectaculo1 = arbolEspectaculo()
-arbolEspectaculo1.insertarPartes(espectaculo)
-
-espectaculoOrdenado = arbolEspectaculo1.inOrderEspectaculo()
-
-
-
-print(arbolEspectaculo1) #imprime el espectaculo ordenado
-
-print("Escena mas grande")
-print(arbolEspectaculo1.max().valor.max())
-print("Escena mas pequeña")
-print(arbolEspectaculo1.max().valor.min())
-print("Promedio")
-print(arbolEspectaculo1.max().valor.promedio())
