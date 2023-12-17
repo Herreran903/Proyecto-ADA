@@ -34,15 +34,6 @@ class ArbolRojoNegro:
             nodo_anterior = nodo_actual
             if nuevo_nodo.clave < nodo_actual.clave:
                 nodo_actual = nodo_actual.izquierda
-
-            elif nuevo_nodo.clave == nodo_actual.clave:
-
-                if nodo_actual.valor.max().clave < nodo_anterior.valor.max().clave:
-                    nodo_actual = nodo_actual.izquierda
-
-                else:
-                    nodo_actual = nodo_actual.derecha
-
             else:
                 nodo_actual = nodo_actual.derecha
 
