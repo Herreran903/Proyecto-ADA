@@ -9,6 +9,10 @@ ANIMALES = GeneradorDatosIniciales.generarAnimalesAlAzar(160)
 
 ESPECTACULO = GeneradorDatosIniciales.generarEspectaculoAlAzar(ANIMALES, 3, 3)
 
+## SOLUCION 2
+
+print("Solucion 2")
+
 espectaculo = []
 for parte in ESPECTACULO:
     part = []
@@ -33,10 +37,6 @@ print(arbolEspectaculo1.max().valor.min()) # imprime la escena mas pequeña
 print("Promedio")
 print(arbolEspectaculo1.max().valor.promedio()) # imprime el promedio
 
-
-## SOLUCION 1
-
-"""
 ## PRUEBAS  DE TIEMPO
 x = []
 y = []
@@ -343,5 +343,4 @@ plt.xlabel('Cantidad de escenarios')
 plt.ylabel('Tiempo de ejecucion')
 plt.title('Tiempo de ejecucion de la solucion 1')
 plt.show()
-"""
 

@@ -5,12 +5,13 @@ import matplotlib.pyplot as plt
 
 ANIMALES = GeneradorDatosIniciales.generarAnimalesAlAzar(160)
 
-#ESPECTACULO = GeneradorDatosIniciales.generarEspectaculoAlAzar(ANIMALES, 3, 3)
+ESPECTACULO = GeneradorDatosIniciales.generarEspectaculoAlAzar(ANIMALES, 3, 3)
 
 ## SOLUCION 1
 
-#print("Solucion 1")
-#print(EspectaculoHeap(ESPECTACULO))
+print("Solucion 1")
+
+print(EspectaculoHeap(ESPECTACULO))
 
 ## PRUEBAS  DE TIEMPO
 x = []
